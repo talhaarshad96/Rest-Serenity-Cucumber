@@ -33,7 +33,7 @@ public class ContactList extends PropertyReader
         request = given();
     }
 
-    @When("I perform Get Operation for {string}")
+   /* @When("I perform Get Operation for {string}")
     public void i_perform_Get_Operation_for(String endpoint)
     {
         response = request.when()
@@ -44,7 +44,7 @@ public class ContactList extends PropertyReader
                 .then().extract().response();
 
         System.out.println(server+endpoint);
-    }
+    }*/
 
     @Then("status code should be {int}")
     public void status_code_should_be(int code)
@@ -52,7 +52,7 @@ public class ContactList extends PropertyReader
         Assert.assertEquals(code, response.getStatusCode());
     }
 
-   @And("I should see the Emp_company name as {string}")
+  /* @And("I should see the Emp_company name as {string}")
     public void i_should_see_the_Emp_company_name_as(String empComp)
     {
       //  ResponseBody body = response.getBody();
@@ -60,7 +60,7 @@ public class ContactList extends PropertyReader
         String responseBody = response.getBody().asString();
         Assert.assertEquals(responseBody.contains(empComp), true);
        // Assert.assertEquals(pojo.getName(), name);
-    }
+    }*/
 
     /*@When("I perform Post Operation for {string}")  //function with Json payload in Pojo
     public void iPerformPostOperationFor(String endpoint) throws JsonProcessingException
@@ -93,20 +93,22 @@ public class ContactList extends PropertyReader
                 .body(jsonDataInFile)
                 .post(server+endpoint)
                 .then().extract().response();
+        _id = response.jsonPath().getString("_id"); //check here
+        System.out.println("id here is "+_id);
     }
-
 
     @And("I should see the email posted as {string}")
     public void iShouldSeeTheEmailPostedAs(String email)
     {
         String responseBody = response.getBody().asString();
         Assert.assertEquals(responseBody.contains(email), true);
+
     }
 
     @When("I perform Get Operation after Post for {string}")
     public void iPerformGetOperationAfterPostFor(String endpoint)
     {
-        String _id = response.jsonPath().getString("_id"); //check here
+       // String _id = response.jsonPath().getString("_id");
         response = request.when()
                 .header("Accept", ContentType.JSON.getAcceptHeader())
                 .contentType(ContentType.JSON)
