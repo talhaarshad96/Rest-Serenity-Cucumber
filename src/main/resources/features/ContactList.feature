@@ -3,11 +3,11 @@
 
 Feature: To use get-post-update-delete
 
-  #Scenario: using the Get_contactList
-  #  Given the endpoints exists
-   # When I perform Get Operation for "/contacts"
-   # Then status code should be 200
-   # And I should see the Emp_company name as "Kforce"
+  Scenario: using the Get_contactList
+    Given the endpoints exists
+    When I perform Get Operation for "/contacts"
+    Then status code should be 200
+    And I should see the Emp_company name as "Kforce"
 
   Scenario: using POST_ToaddContact
     Given the endpoints exists
