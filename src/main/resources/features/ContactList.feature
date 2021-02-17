@@ -21,8 +21,8 @@ Feature: To use get-post-update-delete
     Then status code should be 200
     And I should Get the Posted email as "talha321@thinkingtester.com"
 
- # Scenario: using PUT_ContactList
- #   Given the endpoint exists
-  #  When I perform PUT Operation for "/contacts"
- #   Then the status code should be 200
-  #  And I should see the name posted as "Talha"
+  Scenario: using PUT_ContactList
+    Given the endpoints exists
+    When I perform PUT Operation for "/contacts/"
+    Then the status code after PUT should be 204
+    And I perform Get for "/contacts/" after Post to see Company PUT as "Nisumumum"

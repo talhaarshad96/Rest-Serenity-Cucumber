@@ -108,7 +108,6 @@ public class ContactList extends PropertyReader
     @When("I perform Get Operation after Post for {string}")
     public void iPerformGetOperationAfterPostFor(String endpoint)
     {
-       // String _id = response.jsonPath().getString("_id");
         response = request.when()
                 .header("Accept", ContentType.JSON.getAcceptHeader())
                 .contentType(ContentType.JSON)
@@ -120,8 +119,39 @@ public class ContactList extends PropertyReader
     }
 
     @And("I should Get the Posted email as {string}")
-    public void iShouldGetThePostedEmailAs(String arg0)
+    public void iShouldGetThePostedEmailAs(String email)
     {
+        String responseBody = response.getBody().asString();
+        Assert.assertEquals(responseBody.contains(email), true);
+    }
 
+    @When("I perform PUT Operation for {string}")
+    public void iPerformPUTOperationFor(String endpoint)
+    {
+        File jsonDataInFile = new File("src/main/resources/schema/Put_Contact.json");
+        response = request.when()
+                .header("Accept", ContentType.JSON.getAcceptHeader())
+                .contentType(ContentType.JSON)
+                .body(jsonDataInFile)
+                .put(server+endpoint+_id);
+    }
+
+    @Then("the status code after PUT should be {int}")
+    public void theStatusCodeAfterPUTShouldBe(int code)
+    {
+        Assert.assertEquals(code, response.getStatusCode());
+    }
+
+    @And("I perform Get for {string} after Post to see Company PUT as {string}")
+    public void iPerformGetForAfterPostToSeeCompanyPUTAs(String endpoint, String jobTitle)
+    {
+        response = request.when()
+                .header("Accept", ContentType.JSON.getAcceptHeader())
+                .contentType(ContentType.JSON)
+                .body(APIBody)
+                .get(server+endpoint+_id)
+                .then().extract().response();
+        String responseBody = response.getBody().asString();
+        Assert.assertEquals(responseBody.contains(jobTitle), true);
     }
 }
