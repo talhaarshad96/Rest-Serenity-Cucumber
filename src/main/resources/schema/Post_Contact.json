@@ -1,0 +1,13 @@
+{
+  "firstName": "Talha",
+  "lastName": "Arshad",
+  "email": "talha321@thinkingtester.com",
+  "location": {
+    "city": "Karachi",
+    "country": "Pak"
+  },
+  "employer": {
+    "jobTitle": "Software Tester",
+    "company": "Microsoft"
+  }
+}
