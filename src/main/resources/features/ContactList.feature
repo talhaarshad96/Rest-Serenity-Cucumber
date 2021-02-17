@@ -26,3 +26,9 @@ Feature: To use get-post-update-delete
     When I perform PUT Operation for "/contacts/"
     Then the status code after PUT should be 204
     And I perform Get for "/contacts/" after Post to see Company PUT as "Nisumumum"
+
+  Scenario: using Delete_ContactList
+    Given the endpoints exists
+    When I perform Delete Operation for "/contacts/"
+    Then the status code after Delete should be 204
+    And I perform Get for "/contacts/" after Delete to see statusCode as 404

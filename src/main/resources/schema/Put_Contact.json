@@ -1,0 +1,13 @@
+{
+  "firstName": "Talhaaaa",
+  "lastName": "arshad",
+  "email": "tarshad@nisum.com",
+  "location": {
+    "city": "Karachi, Sindh",
+    "country": "Pak"
+  },
+  "employer": {
+    "jobTitle": "Automation Engineer",
+    "company": "Nisumumum"
+  }
+}

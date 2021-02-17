@@ -154,4 +154,32 @@ public class ContactList extends PropertyReader
         String responseBody = response.getBody().asString();
         Assert.assertEquals(responseBody.contains(jobTitle), true);
     }
+
+    @When("I perform Delete Operation for {string}")
+    public void iPerformDeleteOperationFor(String endpoint)
+    {
+        response = request.when()
+                .header("Accept", ContentType.JSON.getAcceptHeader())
+                .contentType(ContentType.JSON)
+                .body(APIBody)
+                .delete(server+endpoint+_id);
+    }
+
+    @Then("the status code after Delete should be {int}")
+    public void theStatusCodeAfterDeleteShouldBe(int code)
+    {
+        Assert.assertEquals(code, response.getStatusCode());
+    }
+
+    @And("I perform Get for {string} after Delete to see statusCode as {int}")
+    public void iPerformGetForAfterDeleteToSeeStatusCodeAs(String endpoint, int code)
+    {
+        response = request.when()
+                .header("Accept", ContentType.JSON.getAcceptHeader())
+                .contentType(ContentType.JSON)
+                .body(APIBody)
+                .get(server+endpoint+_id)
+                .then().extract().response();
+        Assert.assertEquals(code, response.getStatusCode());
+    }
 }
