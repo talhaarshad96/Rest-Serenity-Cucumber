@@ -1,4 +1,4 @@
-package com.freenow.blog.Models;
+package Models;
 
 public class Pojo
 {

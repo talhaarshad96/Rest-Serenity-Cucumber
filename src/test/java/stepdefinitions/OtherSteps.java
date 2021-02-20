@@ -1,9 +1,9 @@
-package com.freenow.blog.stepdefinitions;
+package stepdefinitions;
 //package stepdefinitions;
 
 
-import com.freenow.blog.Models.Pojo;
-import com.freenow.blog.Utilities.PropertyReader;
+import Models.Pojo;
+import Utilities.PropertyReader;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cucumber.api.java.en.And;

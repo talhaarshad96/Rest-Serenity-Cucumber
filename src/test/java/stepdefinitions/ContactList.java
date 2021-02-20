@@ -1,4 +1,4 @@
-package com.freenow.blog.stepdefinitions;
+package stepdefinitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -8,7 +8,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
-import com.freenow.blog.Utilities.PropertyReader;
+import Utilities.PropertyReader;
 
 import java.io.File;
 

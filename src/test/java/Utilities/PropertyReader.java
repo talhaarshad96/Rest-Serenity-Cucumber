@@ -1,4 +1,4 @@
-package com.freenow.blog.Utilities;
+package Utilities;
 //package Utilities;
 
 import java.io.IOException;
