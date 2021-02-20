@@ -8,7 +8,6 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
-
 import com.freenow.blog.Utilities.PropertyReader;
 
 import java.io.File;
@@ -168,4 +167,6 @@ public class ContactList extends PropertyReader
                 .get(server+endpoint+_id);
         Assert.assertEquals(code, response.getStatusCode());
     }
+
+
 }
