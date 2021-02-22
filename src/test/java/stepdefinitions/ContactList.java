@@ -87,7 +87,7 @@ public class ContactList extends PropertyReader
         System.out.println(server+endpoint);
     }*/
 
-    /*@When("I perform Post Operation for {string}")   //function with Json payload in file
+    @When("I perform Post Operation for {string}")   //function with Json payload in file
     public void iPerformPostOperationFor(String endpoint)
     {
         File jsonDataInFile = new File("src/main/resources/schema/Post_Contact.json");
@@ -99,7 +99,7 @@ public class ContactList extends PropertyReader
                 .then().extract().response();
         _id = response.jsonPath().getString("_id"); //check here
         System.out.println("id here is "+_id);
-    }*/
+    }
 
     @And("I should see the email posted as {string}")
     public void iShouldSeeTheEmailPostedAs(String email)
