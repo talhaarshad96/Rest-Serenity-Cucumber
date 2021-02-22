@@ -126,14 +126,14 @@ public class OtherSteps extends PropertyReader
         Assert.assertEquals(code, response.getStatusCode());
     }
 
-    @And("I should see the name posted as {string}")
+    /*@And("I should see the name posted as {string}")
     public void iShouldSeeTheNamePostedAs(String name)
     {
         String responseBody = response.getBody().asString();
         // Assert.assertEquals(responseBody.contains("Michael"), true);
         //Assert.assertEquals(responseBody.contains(name), true);
         Assert.assertEquals(pojo.getName(), name);
-    }
+    }*/
 
 
 }

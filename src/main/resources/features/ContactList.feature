@@ -13,13 +13,13 @@ Feature: To use get-post-update-delete
     Given the endpoints exists
     When I perform Post Operation for "/contacts"
     Then status code should be 200
-    And I should see the email posted as "talha321@thinkingtester.com"
+    And I should see the email posted as "talha@nisum.com"
 
   Scenario: using Get_contactList after PostContact using its ID
     Given the endpoints exists
     When I perform Get Operation after Post for "/contacts/"
     Then status code should be 200
-    And I should Get the Posted email as "talha321@thinkingtester.com"
+    And I should Get the Posted email as "talha@nisum.com"
 
   Scenario: using PUT_ContactList
     Given the endpoints exists

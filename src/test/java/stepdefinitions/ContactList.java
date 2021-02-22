@@ -1,5 +1,9 @@
 package stepdefinitions;
 
+import Models.Pojo;
+import Models.PojoLocation;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -21,6 +25,8 @@ public class ContactList extends PropertyReader
     String APIBody = "{}";
     private RequestSpecification request;
     static String _id;
+
+    Pojo pojo = new Pojo();
 
     @Given("the endpoints exists")
     public void theEndpointsExists()
@@ -52,11 +58,16 @@ public class ContactList extends PropertyReader
        // Assert.assertEquals(pojo.getName(), name);
     }
 
-    /*@When("I perform Post Operation for {string}")  //function with Json payload in Pojo
+    @When("I perform Post Operation for {string}")  //function with Json payload in Pojo
     public void iPerformPostOperationFor(String endpoint) throws JsonProcessingException
     {
-        //File jsonDataInFile = new File("src/test/resources/schema/user_posts.json");
-        pojo.setName("Talha");
+        pojo.setFirstName("Talha");
+        pojo.setLastName("Arshad");
+        pojo.setEmail("talha@nisum.com");
+        pojo.getLocation().setCity("Karachi");
+        pojo.getLocation().setCountry("Pakistan");
+        pojo.getEmployer().setJobTitle("Automation Engineer");
+        pojo.getEmployer().setCompany("Nisum Pakistan");
         ObjectMapper objectMapper = new ObjectMapper();
 
         String userJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(pojo);
@@ -68,11 +79,12 @@ public class ContactList extends PropertyReader
                 .body(userJson)
                 .post(server+endpoint)
                 .then().extract().response();
-
+        _id = response.jsonPath().getString("_id"); //check here
+        System.out.println("id here is "+_id);
         System.out.println(server+endpoint);
-    }*/
+    }
 
-    @When("I perform Post Operation for {string}")   //function with Json payload in file
+    /*@When("I perform Post Operation for {string}")   //function with Json payload in file
     public void iPerformPostOperationFor(String endpoint)
     {
         File jsonDataInFile = new File("src/main/resources/schema/Post_Contact.json");
@@ -84,7 +96,7 @@ public class ContactList extends PropertyReader
                 .then().extract().response();
         _id = response.jsonPath().getString("_id"); //check here
         System.out.println("id here is "+_id);
-    }
+    }*/
 
     @And("I should see the email posted as {string}")
     public void iShouldSeeTheEmailPostedAs(String email)
@@ -102,7 +114,7 @@ public class ContactList extends PropertyReader
                 .contentType(ContentType.JSON)
                 .body(APIBody)
                 .get(server+endpoint+_id);
-        //System.out.println(server+endpoint+_id);
+        System.out.println(server+endpoint+_id);
     }
 
     @And("I should Get the Posted email as {string}")
@@ -167,6 +179,4 @@ public class ContactList extends PropertyReader
                 .get(server+endpoint+_id);
         Assert.assertEquals(code, response.getStatusCode());
     }
-
-
 }
