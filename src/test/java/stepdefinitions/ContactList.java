@@ -2,6 +2,7 @@ package stepdefinitions;
 
 import Models.Pojo;
 import Models.PojoLocation;
+import Utilities.DataReader;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cucumber.api.java.en.And;
@@ -21,12 +22,14 @@ import static io.restassured.RestAssured.given;
 public class ContactList extends PropertyReader
 {
     String server = LoadProperties().getProperty("server");
+    String contact = LoadProperties().getProperty("contact");
     public Response response;
     String APIBody = "{}";
     private RequestSpecification request;
     static String _id;
 
     Pojo pojo = new Pojo();
+    DataReader dataReader = new DataReader();
 
     @Given("the endpoints exists")
     public void theEndpointsExists()
@@ -58,7 +61,7 @@ public class ContactList extends PropertyReader
        // Assert.assertEquals(pojo.getName(), name);
     }
 
-    @When("I perform Post Operation for {string}")  //function with Json payload in Pojo
+    /*@When("I perform Post Operation for {string}")  //function with Json payload in Pojo
     public void iPerformPostOperationFor(String endpoint) throws JsonProcessingException
     {
         pojo.setFirstName("Talha");
@@ -82,7 +85,7 @@ public class ContactList extends PropertyReader
         _id = response.jsonPath().getString("_id"); //check here
         System.out.println("id here is "+_id);
         System.out.println(server+endpoint);
-    }
+    }*/
 
     /*@When("I perform Post Operation for {string}")   //function with Json payload in file
     public void iPerformPostOperationFor(String endpoint)
@@ -179,4 +182,36 @@ public class ContactList extends PropertyReader
                 .get(server+endpoint+_id);
         Assert.assertEquals(code, response.getStatusCode());
     }
+
+            //function with Json payload in Pojo & Data From DataBuilder
+    @When("I perform POST Operation having Data ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*)")
+    public void iPerformPOSTOperationHavingDataFirstNameAndLastNameAndEmailAndCityAndCountryAndJobTitleAndCompany(String firstName, String lastName, String email,String city,String country,String jobTitle, String company)
+    {
+        response = request.when()
+                .header("Accept", ContentType.JSON.getAcceptHeader())
+                .contentType(ContentType.JSON)
+                .body(dataReader.addUserPayLoad(firstName, lastName, email, city, country, jobTitle, company))
+                .post(server+contact)
+                .then().extract().response();
+        _id = response.jsonPath().getString("_id"); //check here
+        System.out.println("id here is "+_id);
+
+    }
+
+    @And("User is updated  with ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*)")
+    public void userIsUpdatedWithFirstNameAndLastNameAndEmailAndCityAndCountryAndJobTitleAndCompany(String firstName, String lastName, String email,String city,String country,String jobTitle, String company)
+    {
+        String responseBody = response.getBody().asString();
+       // Assert.assertEquals(responseBody.contains(empComp), true);
+        Assert.assertEquals(firstName, dataReader.getPojo().getFirstName());
+        Assert.assertEquals(lastName, dataReader.getPojo().getLastName());
+        Assert.assertEquals(email, dataReader.getPojo().getEmail());
+        Assert.assertEquals(city, dataReader.getPojo().getLocation().getCity());
+        Assert.assertEquals(country, dataReader.getPojo().getLocation().getCountry());
+        Assert.assertEquals(jobTitle, dataReader.getPojo().getEmployer().getJobTitle());
+        Assert.assertEquals(company, dataReader.getPojo().getEmployer().getCompany());
+
+        System.out.println("Response after user update is :  " + response.asString());
+    }
+
 }

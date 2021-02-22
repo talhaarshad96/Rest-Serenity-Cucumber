@@ -25,11 +25,13 @@ public class Pojo
         this.location = location;
     }
 
-    public PojoEmployer getEmployer() {
+    public PojoEmployer getEmployer()
+    {
         return employer;
     }
 
-    public void setEmployer(PojoEmployer employer) {
+    public void setEmployer(PojoEmployer employer)
+    {
         this.employer = employer;
     }
 
