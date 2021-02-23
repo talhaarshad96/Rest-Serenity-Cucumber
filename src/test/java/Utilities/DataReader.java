@@ -6,7 +6,8 @@ public class DataReader
 {
     Pojo pojo = new Pojo();
 
-    public Pojo getPojo() {
+    public Pojo getPojo()
+    {
         return pojo;
     }
 
