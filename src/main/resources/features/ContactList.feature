@@ -44,3 +44,25 @@ Feature: To use get-post-update-delete
       | Talha      | Arshad   | talha.arshad@gmail.com | Karachi | Pak     | Automation               | Nisum   |
       | Vijay      | Khatri   | vijay.khatri@gmail.com | Karachi | Pak     | Software Engineer        | Nisum   |
       | Inam       | Ullah    | inam.ullah@gmail.com   | Karachi | Pak     | Senior Software Engineer | Nisum   |
+
+
+  #FAZOOL STUFF
+
+#Feature: POSTCallReadingDataFromCSVFile
+#
+#  Background:
+#    * url 'http://3.13.86.142:3000'
+#
+#  Scenario Outline: create a user from given details.
+#
+#    Given path '/contacts'
+#    And request {firstName:<firstName>, lastName:<lastName>,email:<email>}
+#    When method post
+#    Then status 200
+#    Then print response
+#
+#    And match $.Status == '#present'
+#    And match $.Status == 'OK'
+#
+#    Examples:
+#      | read('src/test/java/Utilities/data.csv') |

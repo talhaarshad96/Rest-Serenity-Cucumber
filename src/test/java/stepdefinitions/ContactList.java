@@ -14,6 +14,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
 import Utilities.PropertyReader;
+import org.testng.annotations.DataProvider;
 
 import java.io.File;
 
@@ -184,6 +185,7 @@ public class ContactList extends PropertyReader
     }
 
             //function with Json payload in Pojo & Data From DataBuilder
+
     @When("I perform POST Operation having Data ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*)")
     public void iPerformPOSTOperationHavingDataFirstNameAndLastNameAndEmailAndCityAndCountryAndJobTitleAndCompany(String firstName, String lastName, String email,String city,String country,String jobTitle, String company)
     {
@@ -213,5 +215,10 @@ public class ContactList extends PropertyReader
 
         System.out.println("Response after user update is :  " + response.asString());
     }
+
+    /////////////////////////   DATA PROVIDER with EXCEL FILE //////////////////
+
+
+
 
 }

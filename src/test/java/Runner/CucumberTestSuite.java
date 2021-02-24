@@ -9,7 +9,6 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"pretty"},
         features = "src/main/resources/features/ContactList.feature",
-        //glue = "stepdefinitions"
         glue = "stepdefinitions"
 )
 public class CucumberTestSuite extends PropertyReader
