@@ -7,7 +7,7 @@ Feature: To use get-post-update-delete
     Given the endpoints exists
     When I perform Get Operation for "/contacts"
     Then status code should be 200
-    And I should see the Emp_company name as "Kforce"
+    And I should see the Emp_company name as "Apple"
 
   Scenario: using POST_ToaddContact
     Given the endpoints exists
